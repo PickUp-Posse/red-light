@@ -5,6 +5,8 @@ const router = express.Router();
 const Collection = require('../models/dataCollection');
 const student = new Collection();
 
+console.log('Made it to API routes page!');
+
 router.get('/', handleGetAll);
 router.get('/:id', handleGetOne);
 router.post('/', handleAdd);
@@ -13,7 +15,7 @@ router.delete('/:id', handleDelete);
 
 async function handleGetAll(req, res) {
   try {
-    console.log('this is the reqeust', req);
+    console.log('this is the request', req);
     let allStudents = await student.get();
     res.status(200).json(allStudents);
  } catch (e) {
@@ -22,6 +24,7 @@ async function handleGetAll(req, res) {
 }
 async function handleGetOne(req, res) {
  try {
+  console.log('this is the request', req);
     const id = req.params.id;
     let oneStudent = await student.get(id)
     res.status(200).json(oneStudent);
@@ -31,6 +34,7 @@ async function handleGetOne(req, res) {
 }
 async function handleAdd(req, res) {
  try {
+  console.log('this is the request', req);
     let obj = req.body;
     let newRecord = await student.create(obj);
     res.status(201).json(newRecord);
@@ -40,6 +44,7 @@ async function handleAdd(req, res) {
 }
 async function handleUpdate(req, res) {
  try {
+  console.log('this is the request', req);
     const id = req.params.id;
     const obj = req.body;
     let updatedRecord = await student.update(id, obj)

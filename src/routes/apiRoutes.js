@@ -4,6 +4,10 @@ const express = require('express');
 const router = express.Router();
 const Collection = require('../models/dataCollection');
 const student = new Collection();
+console.log('made it to the routes page');
+console.log('this is the collection', Collection);
+console.log('this is the student', student);
+
 
 router.get('/', handleGetAll);
 router.get('/:id', handleGetOne);
@@ -12,6 +16,7 @@ router.put('/:id', handleUpdate);
 router.delete('/:id', handleDelete);
 
 async function handleGetAll(req, res) {
+  console.log('made it in the get all function');
   try {
     console.log('this is the reqeust', req);
     let allStudents = await student.get();

@@ -1,4 +1,4 @@
-# Parent Pickup Cordinator
+# Parent Pickup Coordinator
 
 ## Repo red-light
 Dedicated to the backend

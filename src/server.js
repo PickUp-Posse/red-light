@@ -13,9 +13,11 @@ app.use(cors);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(logger);
-app.use('/', console.log('routes connected'));
-app.use('/student', apiRoutes);
+// app.use(logger);
+app.use('/', logger, () => {
+  console.log('routes connected');
+})
+app.use('/student', logger, apiRoutes);
 
 
 

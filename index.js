@@ -7,4 +7,6 @@ const options = {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology
 
 mongoose.connect(process.env.MONGOOSE_URI, options);
 
+console.log('INDEX PORT ', process.env.SOCKETPORT);
+
 require('./src/server').start(process.env.PORT);

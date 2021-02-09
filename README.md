@@ -14,3 +14,8 @@ Front end application that links to the red-light back end. The two combine to c
 
 ### Domain Modeling/Entity relationship diagram
 ![UML](./assets/pickup-posse.png)
+
+### Deployments
+
+[Backend Heroku](https://parent-pickup-coordinator.herokuapp.com/)
+

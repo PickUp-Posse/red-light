@@ -10,7 +10,8 @@ const studentSchema = mongoose.Schema({
   parents: [{type: String, required: true}],
   siblings: [{type: Number, required: false}],
   district: {type: Number, required: false},
-  schoolName: {type: String, required: true}
+  schoolName: {type: String, required: true},
+  studentStatus: {type: String, required: false},
 })
 
 const studentModel = mongoose.model('student', studentSchema);

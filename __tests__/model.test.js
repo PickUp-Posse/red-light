@@ -40,7 +40,7 @@ describe('Student Model', () => {
   });
   it('can get one record', async () => {
     let obj = {
-      name: 'bob',
+      name: 'greg',
       studentID: 1,
       grade: 5,
       teacher: "Mr. Smith",
@@ -52,7 +52,7 @@ describe('Student Model', () => {
     };
     let record = await student.create(obj);
     let id = await student.get(record._id);
-    expect(id.name).toBe('bob');
+    expect(id.name).toBe('greg');
   })
   it('can get all records', async () => {
     let objects = await student.get();
@@ -74,7 +74,6 @@ describe('Student Model', () => {
     let objectsCurrent = await student.get();
     // console.log(objectsCurrent);
     await student.delete(record._id);
-    // console.log(newObjects);
     let objects = await student.get();
     // console.log(objects);
     expect(objectsCurrent.length).toBe(4);

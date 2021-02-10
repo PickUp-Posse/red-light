@@ -44,18 +44,18 @@ function start(PORT) {
   })
 }
 
-const io = require('socket.io')(3001);
-const principal = io.of('/principal');
+// const io = require('socket.io')(3001);
+// const principal = io.of('/principal');
 
-// //io.attach(start);
+// // //io.attach(start);
 
-principal.on('connection', (socket) => {
-  console.log('Connected: ' + socket.id);
+// principal.on('connection', (socket) => {
+//   console.log('Connected: ' + socket.id);
 
-  socket.on('pickupready', () => {
-    console.log('pickupready: ' + socket.id);
-  });
-})
+//   socket.on('pickupready', () => {
+//     console.log('what is this pickupready: ' + socket.id);
+//   });
+// })
 
 io.on('connection', (socket) => {
   console.log('Connected: ' + socket.id);
@@ -65,7 +65,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('pickupready', (payload) => {
-    console.log('pickupReady: ' + payload);
+    console.log(' is this the one? pickupReady: ' + payload);
   });
 
   socket.on('joinRoom', ({ Student }) => {

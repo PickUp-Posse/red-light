@@ -8,6 +8,7 @@ require('./models/student');
 const mongoose = require('mongoose');
 const Student = mongoose.model('student');
 
+
 //middleware
 const errorHandler = require('../error-handlers/500.js');
 const notFound = require('../error-handlers/404.js');
@@ -44,15 +45,27 @@ function start(PORT) {
 }
 
 const io = require('socket.io')(3001);
+const principal = io.of('/principal');
 
 // //io.attach(start);
 
+principal.on('connection', (socket) => {
+  console.log('Connected: ' + socket.id);
+
+  socket.on('pickupready', () => {
+    console.log('pickupready: ' + socket.id);
+  });
+})
 
 io.on('connection', (socket) => {
   console.log('Connected: ' + socket.id);
 
   socket.on('disconnect', () => {
     console.log('Disconnected: ' + socket.id);
+  });
+
+  socket.on('pickupready', (payload) => {
+    console.log('pickupReady: ' + payload);
   });
 
   socket.on('joinRoom', ({ Student }) => {

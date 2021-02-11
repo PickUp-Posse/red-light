@@ -1,8 +1,8 @@
 
-'use strict';
+// 'use strict';
 
-const Events = require ('events');
+// const Events = require ('events');
 
-const events = new Events (); //this makes a singular new event pool
+// const events = new Events (); //this makes a singular new event pool
 
-module.exports = events;
+// module.exports = events;

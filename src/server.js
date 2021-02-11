@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -34,20 +36,23 @@ app.use('*', notFound);
 app.use(errorHandler);
 
 
+// const app = require('express')();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+io.on('connection', () => { /* … */ });
+server.listen(process.env.PORT);
 
+// const httpServer = require('http').createServer(app); //Simon added app here 11:45am Thursday
 
-
-const httpServer = require('http').createServer(app); //Simon added app here 11:45am Thursday
-
-httpServer.listen(process.env.PORT || 3001); //temp removed process.env.PORT || 
-const io = require("socket.io")(httpServer, {
-  cors: {
-    origin: ['https://parent-pickup-coordinator.herokuapp.com/', "http://localhost:3002"],
-    methods: ["GET", "POST"],
-    allowedHeaders: ["my-custom-header"],
-    credentials: true
-  }
-});
+// httpServer.listen(process.env.PORT || 3001); //temp removed process.env.PORT || 
+// const io = require("socket.io")(httpServer, {
+//   cors: {
+//     origin: ['https://parent-pickup-coordinator.herokuapp.com/', "http://localhost:3002"],
+//     methods: ["GET", "POST"],
+//     allowedHeaders: ["my-custom-header"],
+//     credentials: true
+//   }
+// });
 
 io.on('connection', (socket) => {
 
@@ -80,12 +85,16 @@ io.on('connection', (socket) => {
 })
 
 
-function start(PORT) {
-  app.listen(PORT, () => {
-    console.log('Listening on port', PORT);
-    if (!PORT) { throw new Error('There is no port'); }
-  })
-}
+
+
+// function start(PORT) {
+//   app.listen(PORT, () => {
+//     console.log('Listening on port', PORT);
+//     if (!PORT) { throw new Error('There is no port'); }
+//   })
+// }
+
+// start(process.env.PORT);
 
 module.exports = {
   server: app,

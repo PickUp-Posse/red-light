@@ -34,10 +34,10 @@ app.use('*', notFound);
 app.use(errorHandler);
 
 const httpServer = require('http').createServer();
-httpServer.listen(process.env.SOCKETPORT || 3001);
+httpServer.listen(3001);
 const io = require("socket.io")(httpServer, {
   cors: {
-    origin: ['https://parent-pickup-coordinator.herokuapp.com/', "http://localhost:3002"],
+    origin: "http://localhost:3002",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true

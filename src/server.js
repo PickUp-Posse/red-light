@@ -33,9 +33,14 @@ app.use(logger);
 app.use('*', notFound);
 app.use(errorHandler);
 
+
+const socketIO = require("socket.io");
+
 const httpServer = require('http').createServer();
 httpServer.listen(3001);
-const io = require("socket.io")(httpServer, {
+
+
+const io = socketIO(httpServer, {
   cors: {
     origin: "http://localhost:3002",
     methods: ["GET", "POST"],

@@ -43,25 +43,13 @@ const io = require("socket.io")(httpServer, {
     credentials: true
   }
 });
-// const io = require('socket.io')(3001);
-// const principal = io.of('/principal');
-// curl "http://localhost:3001/socket.io/?EIO=4&transport=polling"
-// //io.attach(start);
-
-// principal.on('connection', (socket) => {
-//   console.log(' principal.on Connected: ' + socket.id);
-
-//   socket.on('pickupready', (payload) => {
-//     console.log('principal.on pickupready: ' + payload.name);
-//   });
-// })
 
 io.on('connection', (socket) => {
-  socket.on('joinRoom', ({ Student }) => {
-    socket.join(Student.teacher);
-    console.log('A user joined chatroom: ' + Student.teacher);
+
+  socket.on('joinRoom', (room) => {
+    socket.join(room);
+    console.log('A user joined chatroom: ' + room);
   });
-  console.log('io.on Connected: ' + socket.id);
 
   socket.on('disconnect', () => {
     console.log('Disconnected: ' + socket.id);
@@ -73,8 +61,11 @@ io.on('connection', (socket) => {
   });
 
   socket.on('sendingstudent', (payload) => {
-    console.log('sending student out: ' + payload.name);
-    socket.emit('sendingstudent', (payload));
+    console.log('SERVER: sending student out: ' + payload.name);
+    console.log('SERVER: we made it past the stacy log');
+    const clients = io.sockets.adapter.rooms.get(payload.teacher);
+    console.log('SERVER: this is the clients: ', clients);
+    socket.to(payload.teacher).emit('sendingstudent', (payload));
   })
 
   socket.on('leaveRoom', ({ Student }) => {

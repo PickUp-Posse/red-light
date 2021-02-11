@@ -42,7 +42,7 @@ httpServer.listen(process.env.SOCKETPORT);
 
 const io = socketIO(httpServer, {
   cors: {
-    origin: "https://parent-pickup-coordinator.netlify.app",
+    origin: "http://localhost:3002",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true

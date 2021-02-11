@@ -1,40 +1,40 @@
-'use strict';
+// 'use strict';
 
-require('dotenv').config();
-const PORT = require('../../../env.js');
+// require('dotenv').config();
+// const PORT = require('../../../env.js');
 
-console.log('Coordinator port ', PORT);
+// console.log('Coordinator port ', PORT);
 
-// const io = require('socket.io');
-// const server = io(process.env.PORT);
+// // const io = require('socket.io');
+// // const server = io(process.env.PORT);
 
-const port = process.env.PORT || 3001; 
-const io = require('socket.io')(port); 
+// const port = process.env.PORT || 3001; 
+// const io = require('socket.io')(port); 
 
 
 
-// const io = require('socket.io');
+// // const io = require('socket.io');
 
-// const server = io(3001);
-
-io.on('connection', (socket) => {
-  io.emit('bullshit');
-  console.log('bullshit2');
-})
-
-// console.log('COORDINATOR file is connected');
+// // const server = io(3001);
 
 // io.on('connection', (socket) => {
-//   console.log('You are connected on socket ', socket.id);
+//   io.emit('bullshit');
+//   console.log('bullshit2');
 // })
 
-const coordinator = io.of('/coordinator');
+// // console.log('COORDINATOR file is connected');
 
-coordinator.on('connection', (socket) =>{
-  console.log(`${socket.id} connected to socket`)
-  socket.on('join', room => {
-    socket.join(room);
-  })
+// // io.on('connection', (socket) => {
+// //   console.log('You are connected on socket ', socket.id);
+// // })
+
+// const coordinator = io.of('/coordinator');
+
+// coordinator.on('connection', (socket) =>{
+//   console.log(`${socket.id} connected to socket`)
+//   socket.on('join', room => {
+//     socket.join(room);
+//   })
   
 //   socket.on('parentReady', (payload) => {
 //     //TODO: coordinator action from principal message to teacher indicating student to send out
@@ -63,4 +63,4 @@ coordinator.on('connection', (socket) =>{
 
 //   //TODO: Stretch direct message teacher to principal
 
-})
+// })

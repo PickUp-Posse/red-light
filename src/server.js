@@ -37,7 +37,7 @@ app.use(errorHandler);
 const socketIO = require("socket.io");
 
 const httpServer = require('http').createServer();
-httpServer.listen(3001);
+httpServer.listen(process.env.SOCKETPORT);
 
 
 const io = socketIO(httpServer, {
